@@ -8,10 +8,8 @@ config:
     loadbalancer:
       strategy: roundrobin
       targets:
-        - target: 127.0.0.1:8000
-          weight: 1
-        - target: 127.0.0.1:8001
-          weight: 1
+        - target: 127.0.0.1:8080
+        - target: 127.0.0.1:8081
   engines:
     # artillery-plugin-loadbalancer's specific configuration
     grpc:

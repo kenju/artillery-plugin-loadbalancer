@@ -16,5 +16,7 @@
     "url": "https://github.com/kenju/artillery-plugin-loadbalancer/issues"
   },
   "homepage": "https://github.com/kenju/artillery-plugin-loadbalancer#readme",
-  "dependencies": {}
+  "dependencies": {
+    "debug": "^4.1.1"
+  }
 }
