@@ -1,5 +1,7 @@
 # artillery-plugin-loadbalancer
 
+[![npm version](https://badge.fury.io/js/artillery-plugin-loadbalancer.svg)](https://badge.fury.io/js/artillery-plugin-loadbalancer)
+
 Load Balance your request to multiple targets for [Artillery.io](https://artillery.io/)
 
 ## Usage
