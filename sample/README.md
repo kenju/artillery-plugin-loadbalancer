@@ -20,9 +20,11 @@ docker-compose ps
 output:
 
 ```
-          Name                   Command         State           Ports
--------------------------------------------------------------------------------
-sample_backend-service_1   /go/backend-service   Up      0.0.0.0:8080->8080/tcp
+docker-compose ps
+           Name                    Command         State           Ports
+---------------------------------------------------------------------------------
+sample_backend-service-1_1   /go/backend-service   Up      0.0.0.0:8080->8080/tcp
+sample_backend-service-2_1   /go/backend-service   Up      0.0.0.0:8081->8080/tcp
 ```
 
 Send gRPC request to gateway-service:
@@ -49,5 +51,14 @@ Run the load test with:
 
 ```
 npm install
-npm run start
+DEBUG=plugin:loadbalancer npm run start
+```
+
+You can see that the requests are equally distributed in 'roundrobin' strategy:
+
+```
+backend-service-1_1  | time="2020-03-01T13:52:20Z" level=info msg="Hello()" func="main.(*backendServer).Hello" file="/app/main.go:83" request="id:1 name:\"Alice\" "
+backend-service-2_1  | time="2020-03-01T13:52:20Z" level=info msg="Hello()" func="main.(*backendServer).Hello" file="/app/main.go:83" request="id:2 name:\"Bob\" "
+backend-service-1_1  | time="2020-03-01T13:52:21Z" level=info msg="Hello()" func="main.(*backendServer).Hello" file="/app/main.go:83" request="id:1 name:\"Alice\" "
+backend-service-2_1  | time="2020-03-01T13:52:21Z" level=info msg="Hello()" func="main.(*backendServer).Hello" file="/app/main.go:83" request="id:2 name:\"Bob\" "
 ```
