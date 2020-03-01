@@ -1,4 +1,3 @@
-# @doc https://artillery.io/docs/script-reference/
 config:
   target: 127.0.0.1:8080
   phases:
@@ -11,15 +10,11 @@ config:
         - target: 127.0.0.1:8080
         - target: 127.0.0.1:8081
   engines:
-    # artillery-plugin-loadbalancer's specific configuration
     grpc:
-      # specify .proto file basic information
       protobufDefinition:
         filepath: protobuf-definitions/backend/services/v1/hello.proto
         package: backend.services.v1
         service: HelloService
-      # can overrider @grpc/proto-loader's configuration
-      # https://www.npmjs.com/package/@grpc/proto-loader
       protoLoaderConfig:
         includeDirs: [ './protobuf-definitions' ]
 
