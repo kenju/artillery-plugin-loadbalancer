@@ -22,8 +22,6 @@
   "homepage": "https://github.com/kenju/artillery-plugin-loadbalancer#readme",
   "dependencies": {
     "artillery": "^1.6.0-29",
-    "artillery-engine-grpc": "0.0.4",
-    "async": "^3.2.0",
-    "debug": "^4.1.1"
+    "artillery-engine-grpc": "0.0.4"
   }
 }
