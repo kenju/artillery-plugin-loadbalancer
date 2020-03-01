@@ -14,13 +14,11 @@ import (
 	backend_services_v1 "github.com/kenju/artillery-plugin-loadbalancer/sample/backend-service/backend/services/v1"
 	log "github.com/sirupsen/logrus"
 	"google.golang.org/grpc"
-	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/reflection"
 )
 
-const (
-	defaultAddr = ":8080"
-)
+var port string
+var appName string
 
 func init() {
 	formatter := &log.TextFormatter{
@@ -29,10 +27,12 @@ func init() {
 	log.SetFormatter(formatter)
 	log.SetLevel(log.DebugLevel)
 	log.SetReportCaller(true)
+
+	port = getEnv("ADDR", ":8080")
+	appName = getEnv("APP_NAME", "backend-service")
 }
 
 func main() {
-	port := getEnv("ADDR", defaultAddr)
 	listenPort, err := net.Listen("tcp", port)
 	if err != nil {
 		panic(err)
@@ -87,7 +87,7 @@ func (bs *backendServer) Hello(
 	time.Sleep(time.Duration(r) * time.Millisecond)
 
 	return &backend_services_v1.HelloResponse{
-		Message: fmt.Sprintf("world (code=%d)", codes.OK),
+		Message: fmt.Sprintf("hello from %s", appName),
 		User: &backend_resources_v1.User{
 			Id: int32(r),
 			Name: "foo",

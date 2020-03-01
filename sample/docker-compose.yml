@@ -1,10 +1,20 @@
 version: '3.7'
 services:
 
-  backend-service:
+  backend-service-1:
     build:
       context: './backend-service'
-    expose:
-      - '8080'
     ports:
       - '8080:8080'
+    environment:
+      - ADDR=:8080
+      - APP_NAME=one
+
+  backend-service-2:
+    build:
+      context: './backend-service'
+    ports:
+      - '8081:8080'
+    environment:
+      - ADDR=:8080
+      - APP_NAME=two
