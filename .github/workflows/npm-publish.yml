@@ -1,0 +1,22 @@
+name: Publish Node.js Package
+
+on:
+  # Release event: push
+  # https://help.github.com/en/actions/reference/events-that-trigger-workflows#push-event-push
+  push:
+    tags:
+       - 'v*'
+
+jobs:
+  publish-npm:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      # https://github.com/actions/setup-node
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+          registry-url: https://registry.npmjs.org/
+      - run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
