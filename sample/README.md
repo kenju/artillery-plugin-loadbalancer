@@ -4,6 +4,20 @@
 
 ### Setup
 
+Link `artillery-plugin-loadbalancer` for this sample repository's package.json using [`npm link`](https://docs.npmjs.com/cli/link.html)
+
+```
+# create symlink at first
+cd artillery-plugin-loadbalancer/
+npm link
+
+# link created symlink to this sample repository
+cd sample/
+npm link artillery-plugin-loadbalancer
+```
+
+### Load Test
+
 At first, run containers:
 
 ```
